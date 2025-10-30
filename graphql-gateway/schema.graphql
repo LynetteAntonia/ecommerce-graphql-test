@@ -1,0 +1,78 @@
+# schema ini mendefinisikan data apa yang bisa diminta (query), 
+# data apa yang bisa dimodifikasi (mutation/create update delete), dan data typesnya , data yang tidak boleh null apa.
+
+type Product {
+  id: ID!
+  name: String!
+  description: String
+  price: Float!
+  category: String
+  stock: Int!
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  orders: [Order!]!   # relasi ke pesanan user
+}
+
+type Order {
+  id: ID!
+  user: User!           # siapa yang order
+  products: [Product!]! # ada produk apa aja di ordernya
+  totalAmount: Float!
+  status: String!
+}
+
+# QUERY DAN MUTATION 
+
+type Query {
+  # Produk
+  product(id: ID!): Product
+  products(name: String, category: String): [Product!]!  
+
+  # User
+  user(id: ID!): User
+  users: [User!]!
+
+  # Order
+  order(id: ID!): Order
+  orders(userId: ID!): [Order!]!
+}
+
+type Mutation {
+  # Produk
+  createProduct(
+    name: String!, 
+    description: String, 
+    price: Float!, 
+    category: String, 
+    stock: Int!
+  ): Product!
+  
+  updateProduct(
+    id: ID!, 
+    name: String, 
+    description: String, 
+    price: Float, 
+    category: String, 
+    stock: Int
+  ): Product!
+
+  deleteProduct(
+    id: ID!
+): Boolean!
+
+  # User
+  createUser(
+    name: String!, 
+    email: String!
+  ): User!
+
+  # Order
+  createOrder(
+    userId: ID!, 
+    productIds: [ID!]!
+  ): Order!
+}

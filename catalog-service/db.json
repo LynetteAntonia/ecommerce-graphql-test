@@ -1,0 +1,36 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "Dress",
+      "description": "Summer dress",
+      "price": 150000,
+      "category": "clothing",
+      "stock": 10
+    },
+    {
+      "id": "2",
+      "name": "Necklace",
+      "description": "Silver",
+      "price": 200000,
+      "category": "accessories",
+      "stock": 50
+    },
+    {
+      "id": "c768",
+      "name": "Bag",
+      "description": "test create new product",
+      "price": 500000,
+      "category": "accessories",
+      "stock": 15
+    },
+    {
+      "id": "12a1",
+      "name": "Shirt",
+      "description": "test create new product",
+      "price": 500000,
+      "category": "clothing",
+      "stock": 15
+    }
+  ]
+}
