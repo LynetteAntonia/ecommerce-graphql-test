@@ -11,7 +11,7 @@ const resolvers = {
   Query: {
     // Produk spesifik tertentu
     product: async (_, { id }) => {
-      const { data } = await axios.get(`${BASE_URL}/${id}`);
+      const { data } = await axios.get(`${BASE_URL}/${id}`); //mastiin yang dikirim integer bukan string
       return data;
     },
     // List produk
@@ -57,10 +57,58 @@ const resolvers = {
       const { data } = await axios.post(BASE_URL, input);
       return data;
     },
+
     updateProduct: async (_, { id, ...patch }) => {
-      const current = (await axios.get(`${BASE_URL}/${id}`)).data;
-      const { data } = await axios.put(`${BASE_URL}/${id}`, { ...current, ...patch }); 
-    },
+  try {
+    const cleanId = String(id).trim().replace(/['"]+/g, "");  
+    const url = `${BASE_URL}/${cleanId}`;
+
+    console.log("update jalan", url);
+
+    // get data lama 
+    const { data: current } = await axios.get(url).catch((err) => {
+      if (err.response?.status === 404) {
+        console.log(`Product with ID ${cleanId} not found`);
+        return { data: null };
+      }
+      throw err;
+    });
+
+    if (!current) {
+      console.log("Product not found.");
+      return {
+        id: cleanId,
+        name: "Unknown Product",
+        description: "Not Found",
+        price: 0,
+        category: "N/A",
+        stock: 0,
+      };
+    }
+
+    const updatedData = { ...current, ...patch };
+    console.log("ini ",updatedData);
+
+    const { data: updated } = await axios.put(url, updatedData);
+
+    console.log("Update success", updated);
+    return updated;
+  } catch (error) {
+    console.error("Update failed:", error.message);
+    return {
+      id: id || "unknown",
+      name: "Update failed",
+      description: error.message,
+      price: 0,
+      category: "error",
+      stock: 0,
+    };
+  }
+},
+
+
+
+
     deleteProduct: async (_, { id }) => {
       await axios.delete(`${BASE_URL}/${id}`);
       return true;

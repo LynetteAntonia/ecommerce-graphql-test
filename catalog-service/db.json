@@ -2,10 +2,10 @@
   "products": [
     {
       "id": "1",
-      "name": "Dress123",
-      "description": "Summer dress",
+      "name": "Floral dress",
+      "description": "Summer Dress",
       "price": 150000,
-      "category": "clothing",
+      "category": "Clothing",
       "stock": 10
     },
     {
@@ -39,6 +39,14 @@
       "price": 500000,
       "category": "clothing",
       "stock": 15
+    },
+    {
+      "id": "bfb0",
+      "name": "Test edit product",
+      "price": 12000,
+      "stock": 30,
+      "description": "Clothing",
+      "category": "Clothing"
     }
   ]
 }
