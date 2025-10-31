@@ -16,7 +16,7 @@ const resolvers = {
     },
     // List produk
    products: async (_, { category, name }) => {
-    const { data } = await axios.get(PRODUCT_BASE);
+    const { data } = await axios.get(BASE_URL);
 
     let filtered = data;
     if (category) {

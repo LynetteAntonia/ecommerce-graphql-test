@@ -2,7 +2,7 @@
   "products": [
     {
       "id": "1",
-      "name": "Dress",
+      "name": "Dress123",
       "description": "Summer dress",
       "price": 150000,
       "category": "clothing",
@@ -17,7 +17,7 @@
       "stock": 50
     },
     {
-      "id": "c768",
+      "id": "3",
       "name": "Bag",
       "description": "test create new product",
       "price": 500000,
@@ -25,8 +25,16 @@
       "stock": 15
     },
     {
-      "id": "12a1",
+      "id": "4",
       "name": "Shirt",
+      "description": "test create new product",
+      "price": 500000,
+      "category": "clothing",
+      "stock": 15
+    },
+    {
+      "id": "5244",
+      "name": "Jacket",
       "description": "test create new product",
       "price": 500000,
       "category": "clothing",
